@@ -23,6 +23,18 @@
     transform: translateY(-2px);
 }
 
+/* Add animation */
+@keyframes fadeInPopup {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
 #customer-care-popup {
     position: fixed;
     bottom: 90px; /* Above the button */
@@ -31,255 +43,50 @@
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     padding: 20px;
-    width: 250px;
+    width: 280px; /* Increased width */
     color: #1f1c2c; /* Dark text for popup */
     font-size: 14px;
     line-height: 1.6;
-    z-index: 1001; /* Above button, below other potential modals if any */
+    z-index: 1001; /* Above button */
     display: none; /* Hidden by default */
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.3s ease, transform 0.3s ease;
 }
+
 #customer-care-popup.show {
     display: block;
     opacity: 1;
     transform: translateY(0);
+    animation: fadeInPopup 0.3s ease-in-out;
 }
+
 #customer-care-popup h4 {
     margin-top: 0;
     color: #007bff; /* Blue title */
     text-align: center;
     margin-bottom: 15px;
 }
+
 #customer-care-popup p {
     margin-bottom: 8px;
 }
-#customer-care-popup a {
-    color: #007bff;
-    text-decoration: none;
-}
-#customer-care-popup a:hover {
-    text-decoration: underline;
-}
 
-/* Chatbot Styles */
-#chatbot-toggle-button {
-    position: fixed;
-    bottom: 20px;
-    left: 20px; /* Positioned to the left */
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background-color: #4CAF50; /* Green color for distinction */
-    color: white;
-    border: none;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 28px; /* Icon size */
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    z-index: 1000;
-}
-#chatbot-toggle-button:hover {
-    background-color: #45a049;
-    transform: translateY(-2px);
-}
-
-#chatbot-popup {
-    position: fixed;
-    bottom: 90px; /* Above the toggle button */
-    left: 20px;
-    width: 320px;
-    max-height: 450px;
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.25);
-    color: #1f1c2c; /* Dark text for popup content */
-    font-size: 14px;
-    line-height: 1.6;
-    z-index: 1001; /* Same as customer care popup */
-    display: none; /* Initially hidden */
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    flex-direction: column; /* For internal layout */
-}
-#chatbot-popup.show {
-    display: flex; /* Changed to flex */
-    opacity: 1;
-    transform: translateY(0);
-}
-
-#chatbot-header {
-    background-color: #4CAF50; /* Green header */
-    color: white;
-    padding: 10px 15px;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-weight: bold;
-}
-#chatbot-header span {
-    font-size: 1.1em;
-}
-#chatbot-close-button {
+/* Add Close Button */
+#customer-care-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
     background: none;
     border: none;
-    color: white;
-    font-size: 24px;
+    font-size: 16px;
     cursor: pointer;
-    padding: 0 5px;
+    color: #007bff;
+    transition: color 0.2s ease;
 }
 
-#chatbot-messages {
-    padding: 15px;
-    overflow-y: auto;
-    flex-grow: 1; /* Allows this area to take available space */
-    min-height: 200px; /* Ensure a minimum height for messages */
-    background-color: #f9f9f9; /* Light background for messages area */
-}
-.user-message, .bot-message {
-    padding: 8px 12px;
-    border-radius: 15px; /* Rounded messages */
-    margin-bottom: 10px;
-    max-width: 80%;
-    word-wrap: break-word; /* Prevent overflow */
-}
-.user-message {
-    background-color: #6a85b6; /* Theme color for user */
-    color: white;
-    margin-left: auto; /* Align to the right */
-    border-bottom-right-radius: 5px; /* Slightly different shape */
-}
-.bot-message {
-    background-color: #e0e0e0; /* Neutral for bot */
-    color: #1f1c2c; /* Dark text */
-    margin-right: auto; /* Align to the left */
-    border-bottom-left-radius: 5px; /* Slightly different shape */
-}
-
-#chatbot-input-area {
-    display: flex;
-    padding: 10px;
-    border-top: 1px solid #ddd;
-    background-color: #fff; /* Ensure it's white */
-    border-bottom-left-radius: 10px; /* Round bottom corners */
-    border-bottom-right-radius: 10px;
-}
-#chatbot-input {
-    flex-grow: 1;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 20px; /* Pill shape input */
-    margin-right: 10px;
-    font-size: 14px;
-}
-#chatbot-input:focus {
-    outline: none;
-    border-color: #6a85b6; /* Theme color on focus */
-}
-#chatbot-send-button {
-    background-color: #4CAF50; /* Green send button */
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 20px; /* Pill shape */
-    cursor: pointer;
-    font-weight: bold;
-    transition: background-color 0.2s;
-}
-#chatbot-send-button:hover {
-    background-color: #45a049;
-}
-
-/* Responsive adjustments */
-@media (max-width: 992px) { /* Tablet and smaller */
-    #main-app-container {
-        flex-direction: column; /* Stack converters and analyzer vertically */
-        gap: 30px;
-        padding: 10px; /* Reduce overall padding */
-        padding-top: 70px; /* Adjust for header bar */
-        align-items: center; /* Center stacked blocks */
-    }
-    #header-bar {
-        padding: 10px 15px; /* Adjust padding */
-        top: 10px; /* Adjust top position */
-    }
-    #header-bar button {
-        padding: 7px 15px;
-        font-size: 0.85rem;
-    }
-    #converter-section { /* From M2 */
-        width: 90%; /* Take more width when stacked */
-        margin-right: 0; /* Remove right margin */
-    }
-    #app { /* From M3 */
-        width: 90%; /* Take more width when stacked */
-        padding: 25px 25px 70px 25px; /* Adjust padding */
-    }
-    #next-page-btn { /* From M3 */
-        position: static; /* Position normally when stacked */
-        margin-top: 20px;
-        align-self: center;
-    }
-}
-
-@media (max-width: 420px) { /* Mobile phones */
-  #login-section { width: 90vw; padding: 30px 20px 40px 20px; } /* From M1 */
-  #main-app-container {
-      padding-top: 65px; /* Further adjust for smaller header bar */
-  }
-  #header-bar {
-      padding: 8px 10px;
-      top: 5px;
-  }
-  #header-bar button {
-      padding: 6px 12px;
-      font-size: 0.8rem;
-      margin: 0 3px;
-  }
-  #app, #converter-section { width: 95vw; padding: 20px 15px 60px 15px; } /* M2 & M3 sections */
-  /* #next-page-btn might need review if M3's static positioning at 992px is final */
-  /* If #next-page-btn remains absolute for some reason, adjust:
-  #next-page-btn { right: 15px; bottom: 15px; }
-  */
-
-  #customer-care-button {
-      width: 50px;
-      height: 50px;
-      font-size: 24px;
-      bottom: 15px;
-      right: 15px;
-  }
-  #customer-care-popup {
-      width: calc(100vw - 30px); /* Adjusted width */
-      max-width: 220px; /* Max width if preferred over full calc */
-      bottom: 75px; /* Above smaller button */
-      right: 15px;
-      padding: 15px;
-  }
-  #chatbot-toggle-button {
-      width: 50px;
-      height: 50px;
-      font-size: 24px;
-      bottom: 15px;
-      left: 15px;
-  }
-  #chatbot-popup {
-      width: calc(100vw - 30px); /* Full width minus some padding */
-      left: 15px;
-      bottom: 75px; /* Above smaller button */
-      max-height: 70vh; /* More screen height for chat */
-  }
-  footer { /* From M1 */
-      font-size: 0.75em;
-      padding: 15px 0;
-  }
+#customer-care-close:hover {
+    color: #0056b3;
 }
 
 

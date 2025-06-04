@@ -1,3 +1,4 @@
+
 <!-- Customer Care Button -->
 <button id="customer-care-button" aria-label="Customer Care Service" aria-haspopup="true" aria-controls="customer-care-popup">
     &#x2139;
@@ -6,32 +7,53 @@
 <!-- Customer Care Popup -->
 <div id="customer-care-popup" role="dialog" aria-labelledby="customer-care-title" hidden>
   <h4 id="customer-care-title">Customer Care</h4>
+
+<button id="customer-care-button" aria-label="Customer Care Service">
+    &#x2139;
+</button>
+
+<div id="customer-care-popup" style="display:none;">
+  <h4>Customer Care</h4>
+
   <p>Email: <a href="mailto:support@techpro.com">support@techpro.com</a></p>
   <p>Contact: <a href="tel:+919876543210">+91 98765 43210</a></p>
   <p style="font-size:0.75em; color:#666;">(Available 9 AM - 6 PM IST, Mon-Fri)</p>
 </div>
 
+
 <!-- Chatbot Toggle Button -->
 <button id="chatbot-toggle-button" aria-label="Toggle Chatbot" aria-haspopup="true" aria-controls="chatbot-popup">
+
+<button id="chatbot-toggle-button" aria-label="Toggle Chatbot">
+
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="28px" height="28px">
     <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
   </svg>
 </button>
 
+
 <!-- Chatbot Popup -->
 <div id="chatbot-popup" role="dialog" aria-labelledby="chatbot-header-title" hidden>
+
+<div id="chatbot-popup" style="display:none;">
+
   <div id="chatbot-header">
     <span id="chatbot-header-title">AI Assistant</span>
     <button id="chatbot-close-button" aria-label="Close Chatbot">&times;</button>
   </div>
   <div id="chatbot-messages">
+
     <div class="bot-message">Hello! How can I help you today? (e.g., "how to upload resume?", "login help")</div>
+
+    <div class="bot-message">Hello! How can I help you today? (e.g., "how to upload resume?", "login help", "everything for you")</div>
+
   </div>
   <div id="chatbot-input-area">
     <input type="text" id="chatbot-input" placeholder="Ask a question..." aria-label="Chatbot input">
     <button id="chatbot-send-button" aria-label="Send message">Send</button>
   </div>
 </div>
+
 
 <!-- CSS Styles -->
 <style>
@@ -119,6 +141,41 @@
 
   chatbotCloseBtn.addEventListener('click', () => {
     chatbotPopup.hidden = true;
+  });
+</script>
+
+
+<!-- Additional Section: Help & FAQs -->
+<div id="help-faqs" style="display:none;">
+  <h4>Frequently Asked Questions</h4>
+  <ul>
+    <li><strong>How do I upload my resume?</strong> Click the upload button or paste your resume text in the provided textarea.</li>
+    <li><strong>How can I contact support?</strong> Use the Customer Care button to find the contact details.</li>
+    <li><strong>What can the chatbot assist with?</strong> It can help with troubleshooting, resume guidance, and general inquiries.</li>
+  </ul>
+  <button id="help-close-btn" aria-label="Close Help Section">&times;</button>
+</div>
+
+<!-- Script to Handle Popups -->
+<script>
+  document.getElementById("customer-care-button").addEventListener("click", function() {
+    document.getElementById("customer-care-popup").style.display = "block";
+  });
+
+  document.getElementById("customer-care-close").addEventListener("click", function() {
+    document.getElementById("customer-care-popup").style.display = "none";
+  });
+
+  document.getElementById("chatbot-toggle-button").addEventListener("click", function() {
+    document.getElementById("chatbot-popup").style.display = "block";
+  });
+
+  document.getElementById("chatbot-close-button").addEventListener("click", function() {
+    document.getElementById("chatbot-popup").style.display = "none";
+  });
+
+  document.getElementById("help-close-btn").addEventListener("click", function() {
+    document.getElementById("help-faqs").style.display = "none";
   });
 </script>
 
