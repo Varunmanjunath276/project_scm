@@ -1,28 +1,124 @@
-<button id="customer-care-button" aria-label="Customer Care Service">
-    &#x2139; </button>
+<!-- Customer Care Button -->
+<button id="customer-care-button" aria-label="Customer Care Service" aria-haspopup="true" aria-controls="customer-care-popup">
+    &#x2139;
+</button>
 
-<div id="customer-care-popup">
-  <h4>Customer Care</h4>
+<!-- Customer Care Popup -->
+<div id="customer-care-popup" role="dialog" aria-labelledby="customer-care-title" hidden>
+  <h4 id="customer-care-title">Customer Care</h4>
   <p>Email: <a href="mailto:support@techpro.com">support@techpro.com</a></p>
-  <p>Contact: <a href="tel:+919876543210">+91 98765 43239</a></p>
-  <button id="customer-care-close" aria-label="Close Customer Care Popup">&times;</button>
+  <p>Contact: <a href="tel:+919876543210">+91 98765 43210</a></p>
   <p style="font-size:0.75em; color:#666;">(Available 9 AM - 6 PM IST, Mon-Fri)</p>
 </div>
 
-<button id="chatbot-toggle-button" aria-label="Toggle Chatbot">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="28px" height="28px"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg>
+<!-- Chatbot Toggle Button -->
+<button id="chatbot-toggle-button" aria-label="Toggle Chatbot" aria-haspopup="true" aria-controls="chatbot-popup">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="28px" height="28px">
+    <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
+  </svg>
 </button>
 
-<div id="chatbot-popup">
+<!-- Chatbot Popup -->
+<div id="chatbot-popup" role="dialog" aria-labelledby="chatbot-header-title" hidden>
   <div id="chatbot-header">
-    <span>AI Assistant</span>
+    <span id="chatbot-header-title">AI Assistant</span>
     <button id="chatbot-close-button" aria-label="Close Chatbot">&times;</button>
   </div>
   <div id="chatbot-messages">
-    <div class="bot-message">Hello! How can I help you today? (e.g., "how to upload resume?", "login help","everything for you")</div>
+    <div class="bot-message">Hello! How can I help you today? (e.g., "how to upload resume?", "login help")</div>
   </div>
   <div id="chatbot-input-area">
     <input type="text" id="chatbot-input" placeholder="Ask a question..." aria-label="Chatbot input">
     <button id="chatbot-send-button" aria-label="Send message">Send</button>
   </div>
 </div>
+
+<!-- CSS Styles -->
+<style>
+  #customer-care-popup,
+  #chatbot-popup {
+    position: fixed;
+    background: #fff;
+    border: 1px solid #ccc;
+    padding: 1em;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    transition: opacity 0.3s ease;
+  }
+
+  #customer-care-popup {
+    bottom: 80px;
+    right: 20px;
+    width: 250px;
+  }
+
+  #chatbot-popup {
+    bottom: 20px;
+    right: 20px;
+    width: 300px;
+    max-height: 400px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #chatbot-header {
+    display: flex;
+    justify-content: space-between;
+    background: #f4f4f4;
+    padding: 0.5em;
+    font-weight: bold;
+    border-bottom: 1px solid #ddd;
+  }
+
+  #chatbot-messages {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 1em;
+    background: #fafafa;
+  }
+
+  .bot-message {
+    margin-bottom: 0.5em;
+    background: #e6f2ff;
+    padding: 0.5em;
+    border-radius: 4px;
+  }
+
+  #chatbot-input-area {
+    display: flex;
+    padding: 0.5em;
+    border-top: 1px solid #ddd;
+  }
+
+  #chatbot-input {
+    flex: 1;
+    padding: 0.5em;
+  }
+
+  #chatbot-send-button {
+    margin-left: 0.5em;
+  }
+</style>
+
+<!-- JavaScript Functionality -->
+<script>
+  const customerCareBtn = document.getElementById('customer-care-button');
+  const customerCarePopup = document.getElementById('customer-care-popup');
+
+  const chatbotToggleBtn = document.getElementById('chatbot-toggle-button');
+  const chatbotPopup = document.getElementById('chatbot-popup');
+  const chatbotCloseBtn = document.getElementById('chatbot-close-button');
+
+  customerCareBtn.addEventListener('click', () => {
+    customerCarePopup.hidden = !customerCarePopup.hidden;
+  });
+
+  chatbotToggleBtn.addEventListener('click', () => {
+    chatbotPopup.hidden = !chatbotPopup.hidden;
+  });
+
+  chatbotCloseBtn.addEventListener('click', () => {
+    chatbotPopup.hidden = true;
+  });
+</script>
+
